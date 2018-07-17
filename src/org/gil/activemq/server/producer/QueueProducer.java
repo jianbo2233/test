@@ -1,6 +1,7 @@
 package org.gil.activemq.server.producer;
 
 import javax.jms.Connection;
+import javax.jms.DeliveryMode;
 import javax.jms.MessageProducer;
 import javax.jms.ObjectMessage;
 import javax.jms.Session;
@@ -45,7 +46,7 @@ public class QueueProducer {
         // MessageProducer：消息发送者;是一个由Session创建的对象，用来向Destination发送消息。
         MessageProducer producer = session.createProducer(queue);
         //为所有消息设置传送模式:NON_PERSISTENT（非持久性消息）,PERSISTENT（持久性消息(默认)）
-//        producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+        producer.setDeliveryMode(DeliveryMode.PERSISTENT);
         //消息优先级从0-9十个级别，0-4是普通消息，5-9是加急消息。如果不指定优先级，则默认为4。
         //JMS不要求严格按照这十个优先级发送消息，但必须保证加急消息要先于普通消息到达。
 //        producer.setPriority(4);
